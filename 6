@@ -48,14 +48,13 @@ int main()
 		cin >> c;
 		arr.push_back(c);
 	}
+	
+	int max = (n / 1)*arr.at(0);
+	
+	for (int i = 2; i <= n; i++){
 
-	int size = arr.size();
-
-	int max = 0;
-	for (int i = 1; i <= size; i++){
-
-		if (max < (n / i)*arr.at(i-1))
-			max = (n / i)*arr.at(i-1);
+		if (max <= ((n / i)*arr.at(i - 1)))
+			max = (n / i)*arr.at(i - 1);
 	}
 
 	cout << max;
