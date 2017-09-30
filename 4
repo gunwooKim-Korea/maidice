@@ -44,20 +44,44 @@
 3
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
-
 
 int main()
 {
-	bool col[100000001] = { false, };
-	int N;
+	vector<int> col;
+	int N, last;
 	cin >> N;
+	int ans = 0;
+
 	for (int i = 0; i < N; i++){
 		int loc = 0;
 		cin >> loc;
-		col[loc] = true;
+		col.push_back(loc);
+		last = loc;
+	}
+	int size = col.size();
+	int min = 999999;
+
+	for (int i = 0; i < size - 1; i++){
+		if (min > abs(col.at(i) - abs(col.at(i + 1))))
+			min = abs(col.at(i) - abs(col.at(i + 1)));
 	}
 
+	for (int i = 0; col.at(col.size()-1) == last; i++){
+		if (col.at(i) + min == last)
+			break;
+		if (find(col.begin(), col.end(), col.at(i) + min) != col.end()){
 
+		}
+		else{
+			col.push_back(col.at(i) + min);
+			sort(col.begin(), col.end());
+			ans++;
+		}
+	}
+
+	cout << ans;
 	return 0;
 }
